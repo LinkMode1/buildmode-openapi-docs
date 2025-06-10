@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: BuildMode Agent API
+  version: 1.0.0
+servers:
+  - url: https://buildmode-core.onrender.com
+
+paths:
+  /files:
+    get:
+      summary: Get list of project files
+      responses:
+        '200':
+          description: Returns a list of project files
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files:
+                    type: array
+                    items:
+                      type: string
+
+  /edit-file:
+    post:
+      summary: Edit a specific file's content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                path:
+                  type: string
+                content:
+                  type: string
+      responses:
+        '200':
+          description: File edited successfully
+
+  /project-status:
+    get:
+      summary: Get the current status of the BuildMode app
+      responses:
+        '200':
+          description: Status summary
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  knownBugs:
+                    type: array
+                    items:
+                      type: string
