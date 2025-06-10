@@ -60,3 +60,35 @@ paths:
                     type: array
                     items:
                       type: string
+
+  /memory/{userId}:
+    get:
+      summary: Retrieve memory entries for a specific user
+      operationId: get_memory
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved memory entries
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  memories:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        text:
+                          type: string
+                        type:
+                          type: string
+                        timestamp:
+                          type: integer
